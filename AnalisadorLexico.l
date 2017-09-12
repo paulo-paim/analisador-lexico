@@ -38,6 +38,8 @@ operador {operado}|{operadorMenos}
 {atribuicao} {printf("Atribuicao");}
 
 %%
-int main(){
+int main(int argc, char *argv[]){
+yyin(fopen("r",argv[1]));
+
 yylex ( ) ;
 }
