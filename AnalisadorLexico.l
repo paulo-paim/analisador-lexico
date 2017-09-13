@@ -15,9 +15,9 @@ tab [\t]
 
 
 int {digito}+
-intSinal [+|-]{digito}+
+intSinal [-]{digito}+
 real {int}[.]{int}
-realSinal [+|-]{int}[.]{int}
+realSinal [-]{int}[.]{int}
 
 string {letra}({digito}*{letra}*)*
 
@@ -44,7 +44,7 @@ comentario [//][^\n]*
 
 {enter} {printf("ENTER\n");}
 {tab} {printf("TABULACAO\n");}
-.[^\n]* {printf("ERRO\n");}
+. {printf("ERRO\n");}
 %%
 int main(int argc, char **argv){
 printf("nome do arquivo carregado: %s\n\nTokens encontrados no arquivo:\n\n",argv[1]);
