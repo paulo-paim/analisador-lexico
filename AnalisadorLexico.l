@@ -4,42 +4,50 @@
 %}
 
 digito [0-9]
-ponto [.]
-operado [*|/|+|<|>]
-operadorMenos [-]
-atribuicao [=]
-separador [,|;|(|)|{|}]
-especial1 [[]
-especial2 []]
-comentario [/]
 letra [A-Za-z]
+operador [*|/|+|<|>|-]
+atribuicao [=]
+instrucao [;]
+separacao [,]
+chaves [(|)|{|}|\]|\[]
+enter [\n]
+tab [\t]
 
 
 int {digito}+
-real {int}{ponto}{int}
+intSinal [+|-]{digito}+
+real {int}[.]{int}
+realSinal [+|-]{int}[.]{int}
 
 string {letra}({digito}*{letra}*)*
 
+comentario [//][^\n]*
 
-pontuacao {separador}|{especial1}|{especial2}
-
-operador {operado}|{operadorMenos}
 
 %%
-{int} {printf("num: %s",yytext);}
-{real} {printf("%s",yytext);}
+{int} {printf("inteiro: %s\n",yytext);}
+{real} {printf("real: %s\n",yytext);}
+{intSinal} {printf("inteiro com sinal: %s\n",yytext);}
+{realSinal} {printf("real com sinal: %s\n",yytext);}
 
-{comentario}{comentario} {printf("comentario");}
-{operador} {printf("op: %s",yytext);}
-{pontuacao} {printf("pont: %s",yytext);}
+{string} {printf("string: %s\n",yytext);}
 
-{string} {printf("STRING %s",yytext);}
+{comentario} {printf("comentario: %s\n",yytext);}
 
-{atribuicao} {printf("Atribuicao");}
+{operador} {printf("operador: %s\n",yytext);}
+{atribuicao} {printf("Atribuicao: %s\n",yytext);}
 
+{instrucao} {printf("fim da instrucao: %s\n",yytext);}
+{separacao} {printf("separador: %s\n",yytext);}
+{chaves} {printf("chave: %s\n",yytext);}
+
+
+{enter} {printf("ENTER\n");}
+{tab} {printf("TABULACAO\n");}
+.[^\n]* {printf("ERRO\n");}
 %%
-int main(int argc, char *argv[]){
-yyin(fopen("r",argv[1]));
-
-yylex ( ) ;
+int main(int argc, char **argv){
+printf("nome do arquivo carregado: %s\n\nTokens encontrados no arquivo:\n\n",argv[1]);
+yyin=fopen(argv[1], "r");
+yylex();
 }
