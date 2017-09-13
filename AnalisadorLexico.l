@@ -20,7 +20,7 @@ real 		{int}[.]{digito}+
 string 		{letra}({digito}*{letra}*)*
 
 comentario 	"//"[^\n]*
-reservada 	"se"|"senao"|"para"|"enquanto"|"int"|"real"|"string"|"mainq"
+reservada 	"se"|"senao"|"para"|"enquanto"|"int"|"real"|"string"|"main"
 
 %%
 
