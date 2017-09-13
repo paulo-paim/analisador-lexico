@@ -1,1 +1,74 @@
-Relatório do Analisador Léxico.
+Trabalho 1 -Analisador Léxico.
+
+
+Alfabeto
+  Σ = {A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, Y, Z,
+a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v ,w, x, y, z, 
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
++, -, *, /, %, 
+[, ] , ,, (, ), {, }, 
+=, <, >, ;, _}.
+
+
+Analisador Léxico para a linguagem proposta reconhecer a seguinte linguagem:
+
+    Digitos e números
+    Operadores matemáticos
+    Operadores lógicos
+    Delimitadores de escopo
+    Delimitadores de instrução e separação
+    Espaço em branco
+    Comentários
+    Palavras chave
+    Tipos básicos de dados
+
+
+Regras:
+
+    Letras e palavras: [A-Za-z_]
+
+    Dígitos e números: [0-9]+
+    
+    Operadores matemáticos: [ * | / | + | - | % ]
+    
+    Operadores lógicos: [ < | > | <= | >= | == | && | || ]
+    
+    Delimitadores de escopo: [ ( | ) | { | } | ] | [ ]
+    
+    Delimitadores de instrução e separação: [ , | ; ]
+    
+    Espaço em branco: [ \n | \t ]
+    
+    Comentários: [ // ][ ^\n ]*
+    
+    Palavras Chave: se senao para enquanto int real char
+    
+    Tipos básicos de dados:
+
+string {letra}({digito}*{letra}*)*
+        int [0-9]+
+        intSinal [+|-][0-9]+
+        real [0-9]+"."[0-9]+
+        realSinal [+|-]?[0-9]+"."[0-9]+
+        string [A-Za-z_]+[0-9 | A-Za-z_]*
+
+Execução
+
+Para executar foi necessário instalar o Flex e executar a seguinte sequência de comandos:
+
+   $ flex AnalisadorLexico.l 
+   $ gcc lex.yy.c -o AnalisadorLexico -lfl
+   $ ./AnalisadorLexico input.c
+
+Exemplo de entrada - input.c
+
+void main(void){ 
+	int x;
+	int y; int z;
+	x = 5; 
+	y = 10; 
+}
+
+Saída
+
+//Testar o código e colocar a saída aqui
