@@ -1,4 +1,3 @@
-
 %{
 #include <stdio.h>
 int linha=1;
@@ -19,20 +18,8 @@ int 		[+-]?{digito}+
 real 		{int}[.]{digito}+
 string 		{letra}({digito}*{letra}*)*
 
-<<<<<<< HEAD
-int {digito}+
-intSinal [-]{digito}+
-real {int}[.]{int}
-realSinal [-]{int}[.]{int}
-
-string {letra}({digito}*{letra}*)*
-
-comentario [//][^\n]*
-
-=======
 comentario 	"//"[^\n]*
 reservada 	"se"|"senao"|"para"|"enquanto"|"int"|"real"|"string"|"mainq"
->>>>>>> fddb06fd477309d6372b646c2bab05d00af181d4
 
 %%
 
@@ -55,12 +42,6 @@ reservada 	"se"|"senao"|"para"|"enquanto"|"int"|"real"|"string"|"mainq"
 {tab} {printf("tabulacao: TAB\t-> linha: %d\n",linha);}
 .[^\n]* {printf("ERRO. Caracter desconhecido: %s\t-> linha: %d\n",yytext, linha);}
 
-<<<<<<< HEAD
-{enter} {printf("ENTER\n");}
-{tab} {printf("TABULACAO\n");}
-. {printf("ERRO\n");}
-=======
->>>>>>> fddb06fd477309d6372b646c2bab05d00af181d4
 %%
 
 int main(int argc, char **argv){
