@@ -21,7 +21,7 @@ realSinal [+|-]{int}[.]{int}
 
 string {letra}({digito}*{letra}*)*
 comentario [//][^\n]*
-reservada [se|senao|para|enquanto|int|real|char]
+reservada [se|senao|para|enquanto|int|real|string]
 
 %%
 
