@@ -14,13 +14,14 @@ separacao 	[,]
 escopo 		"("|")"|"{"|"}"|"["|"]"
 enter 		[\n]
 tab 		[\t]
+espaco " "
 
 int 		[+-]?{digito}+
 real 		{int}[.]{digito}+
 string 		{letra}({digito}*{letra}*)*
 
 comentario 	"//"[^\n]*
-reservada 	"se"|"senao"|"para"|"enquanto"|"int"|"real"|"string"|"main"
+reservada 	"se"|"senao"|"para"|"enquanto"|"int"|"real"|"string"|"main"|"void"
 
 %%
 
@@ -39,9 +40,11 @@ reservada 	"se"|"senao"|"para"|"enquanto"|"int"|"real"|"string"|"main"
 {separacao} {printf("separador de operandos: %s\t-> linha: %d\n",yytext, linha);}
 {escopo} {printf("delimitador de escopo: %s\t-> linha: %d\n",yytext, linha);}
 
-{enter} {printf("delimitador de linha: ENTER\t-> linha: %d\n",linha); linha++;}
 {tab} {printf("tabulacao: TAB\t-> linha: %d\n",linha);}
-.[^\n]* {printf("ERRO. Caracter desconhecido: %s\t-> linha: %d\n",yytext, linha);}
+{enter} {printf("delimitador de linha: ENTER\t-> linha: %d\n",linha); linha++;}
+
+{espaco} {printf("espaco em branco localizado. \t-> linha: %d\n",linha);}
+. {printf("ERRO. Caracter desconhecido: %s\t-> linha: %d\n",yytext, linha);}
 
 %%
 

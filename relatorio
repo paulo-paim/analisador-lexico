@@ -3,10 +3,10 @@ Trabalho 1 -Analisador Léxico.
 
 Alfabeto
   Σ = {A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, Y, Z,
-a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v ,w, x, y, z, 
-0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
-+, -, *, /, %, 
-[, ] , ,, (, ), {, }, 
+a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v ,w, x, y, z,
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
++, -, *, /, %,
+[, ] , ,, (, ), {, },
 =, <, >, ;, _}.
 
 
@@ -28,21 +28,21 @@ Regras:
     Letras e palavras: [A-Za-z_]
 
     Dígitos e números: [0-9]+
-    
+
     Operadores matemáticos: [ * | / | + | - | % ]
-    
+
     Operadores lógicos: [ < | > | <= | >= | == | && | || ]
-    
+
     Delimitadores de escopo: [ ( | ) | { | } | ] | [ ]
-    
+
     Delimitadores de instrução e separação: [ , | ; ]
-    
+
     Espaço em branco: [ \n | \t ]
-    
+
     Comentários: [ // ][ ^\n ]*
-    
+
     Palavras Chave: se senao para enquanto int real char
-    
+
     Tipos básicos de dados:
 
 string {letra}({digito}*{letra}*)*
@@ -56,19 +56,64 @@ Execução
 
 Para executar foi necessário instalar o Flex e executar a seguinte sequência de comandos:
 
-   $ flex AnalisadorLexico.l 
+   $ flex AnalisadorLexico.l
    $ gcc lex.yy.c -o AnalisadorLexico -lfl
    $ ./AnalisadorLexico input.c
 
 Exemplo de entrada - input.c
 
-void main(void){ 
+void main(void){
 	int x;
 	int y; int z;
-	x = 5; 
-	y = 10; 
+	x = 5;
+	y = 10;
 }
 
 Saída
 
 //Testar o código e colocar a saída aqui
+Tokens encontrados no arquivo:
+
+palavra reservada: void -> linha: 1
+espaco em branco localizado.    -> linha: 1
+palavra reservada: main -> linha: 1
+delimitador de escopo: (        -> linha: 1
+palavra reservada: void -> linha: 1
+delimitador de escopo: )        -> linha: 1
+delimitador de escopo: {        -> linha: 1
+delimitador de linha: ENTER     -> linha: 1
+tabulacao: TAB  -> linha: 2
+palavra reservada: int  -> linha: 2
+espaco em branco localizado.    -> linha: 2
+string de identificadores: x    -> linha: 2
+fim da instrucao: ;     -> linha: 2
+delimitador de linha: ENTER     -> linha: 2
+tabulacao: TAB  -> linha: 3
+palavra reservada: int  -> linha: 3
+espaco em branco localizado.    -> linha: 3
+string de identificadores: y    -> linha: 3
+fim da instrucao: ;     -> linha: 3
+espaco em branco localizado.    -> linha: 3
+palavra reservada: int  -> linha: 3
+espaco em branco localizado.    -> linha: 3
+string de identificadores: z    -> linha: 3
+fim da instrucao: ;     -> linha: 3
+delimitador de linha: ENTER     -> linha: 3
+tabulacao: TAB  -> linha: 4
+string de identificadores: x    -> linha: 4
+espaco em branco localizado.    -> linha: 4
+operador de atribuicao: =       -> linha: 4
+espaco em branco localizado.    -> linha: 4
+valor inteiro: 5        -> linha: 4
+fim da instrucao: ;     -> linha: 4
+delimitador de linha: ENTER     -> linha: 4
+tabulacao: TAB  -> linha: 5
+string de identificadores: y    -> linha: 5
+espaco em branco localizado.    -> linha: 5
+operador de atribuicao: =       -> linha: 5
+espaco em branco localizado.    -> linha: 5
+valor inteiro: 10       -> linha: 5
+fim da instrucao: ;     -> linha: 5
+delimitador de linha: ENTER     -> linha: 5
+delimitador de escopo: }        -> linha: 6
+delimitador de linha: ENTER     -> linha: 6
