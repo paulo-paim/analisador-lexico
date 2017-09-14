@@ -1,31 +1,60 @@
 Trabalho 1 -Analisador Léxico.
 
+Ferramenta utilizada:
 
+	Flex - Versão 2.6.4
+	
 Alfabeto
-  Σ = {A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, Y, Z,
-a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v ,w, x, y, z,
-0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
-+, -, *, /, %,
-[, ] , ,, (, ), {, },
-=, <, >, ;, _}.
+
+	Σ = {A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, Y, Z,
+	a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v ,w, x, y, z,
+	0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+	+, -, *, /, %,
+	[, ] , ,, (, ), {, },
+	=, <, >, ;, _}.
 
 
 Analisador Léxico para a linguagem proposta reconhecer a seguinte linguagem:
 
-    Digitos e números
-    Operadores matemáticos
-    Operadores lógicos
-    Delimitadores de escopo
-    Delimitadores de instrução e separação
-    Espaço em branco
-    Comentários
-    Palavras chave
-    Tipos básicos de dados
+	Digitos e números:
+    		Exemplos de expressões aceitas:
+		Exemplos de expressões não aceitas:
+    
+   	Operadores matemáticos:
+    		Exemplos de expressões aceitas:
+		Exemplos de expressões não aceitas:
+    
+    	Operadores lógicos:
+    		Exemplos de expressões aceitas:
+		Exemplos de expressões não aceitas:
+    
+    	Delimitadores de escopo:
+		Exemplos de expressões aceitas:
+		Exemplos de expressões não aceitas:
 
+	Delimitadores de instrução e separação:
+		Exemplos de expressões aceitas:
+		Exemplos de expressões não aceitas:
+
+	Espaço em branco:
+		Exemplos de expressões aceitas:
+		Exemplos de expressões não aceitas:
+
+	Comentários:
+		Exemplos de expressões aceitas:
+		Exemplos de expressões não aceitas:
+
+	Palavras chave:
+		Exemplos de expressões aceitas:
+		Exemplos de expressões não aceitas:
+
+	Tipos básicos de dados:
+		Exemplos de expressões aceitas:
+		Exemplos de expressões não aceitas:
 
 Regras:
 
-    Letras e palavras: [A-Za-z_]
+    Letras e palavras: [A-Za-z]
 
     Dígitos e números: [0-9]+
 
@@ -41,35 +70,46 @@ Regras:
 
     Comentários: [ // ][ ^\n ]*
 
-    Palavras Chave: se senao para enquanto int real char
+    Palavras Chave: se | senao | para | enquanto | int | real | string | main | void
 
     Tipos básicos de dados:
 
-string {letra}({digito}*{letra}*)*
-        int [0-9]+
-        intSinal [+|-][0-9]+
-        real [0-9]+"."[0-9]+
-        realSinal [+|-]?[0-9]+"."[0-9]+
+        int [+|-]?[0-9]+
+        real [+|-]?[0-9]+"."[0-9]+
         string [A-Za-z_]+[0-9 | A-Za-z_]*
+
 
 Execução
 
+Arquivos utilizados:
+
+	AnalisadorLexico.l – código de regras que definem a linguagem;
+	lex.yy.c – código do gerador(flex); 
+	AnalisadorLexico - executavél gerado a partir da compilação do arquivo lex.yy.c;
+	input.c – arquivo contendo exemplos de entrada presentes na linguagem ou não;
+
 Para executar foi necessário instalar o Flex e executar a seguinte sequência de comandos:
 
-   $ flex AnalisadorLexico.l
-   $ gcc lex.yy.c -o AnalisadorLexico -lfl
-   $ ./AnalisadorLexico input.c
+	$ flex AnalisadorLexico.l
+	$ gcc lex.yy.c -o AnalisadorLexico -lfl
+   	$ ./AnalisadorLexico input.c ou ./AnalisadorLexico < input.c
 
 Exemplo de entrada - input.c
 
-void main(void){
-	int x;
-	int y; int z;
-	x = 5;
-	y = 10;
-}
+	void main(void){
+		int x;
+		int y; int z;
+		x = 5;
+		y = 10;
+	}
 
 Saída
+
+O analisador gerará um texto impresso na tela indicando o reconhecimento, ou não, dos símbolos(tokens)
+presentes no arquivo de entrada, acompanhado do número da linha onde tal símbolo foi encontrado.
+
+Segue um exemplo de saída gerado pelo AnalisadorLexico considerando o exemplo de entrada, input.c,
+aprentado na seção anterior:
 
 //Testar o código e colocar a saída aqui
 Tokens encontrados no arquivo:
